@@ -243,9 +243,7 @@ This list is a collection of ideas, not a promise that every feature is already 
 
 ---
 
-## 📜 License
 
-A license has not been specified here. Before reusing, modifying, or redistributing this project, check the repository for a `LICENSE` file. If you are the project owner, consider adding an appropriate open-source license to make the intended permissions clear.
 
 ---
 
