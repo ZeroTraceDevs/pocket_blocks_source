@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c8c2b7">
+<title>POCKET BLOCKS — Retro Falling Blocks</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+<section class="device" aria-label="Virtuelle Retro-Handheld-Konsole">
+ <div class="brandline"><div class="brand">POCKET BLOCKS<small>DOT MATRIX EDITION</small></div><div class="power"><i class="led" id="powerLed"></i> POWER</div></div>
+ <div class="bezel">
+  <div class="screenlabel">DOT MATRIX WITH STEREO SOUND</div>
+  <div class="screenwrap filter-none" id="screenWrap"><canvas id="game" width="200" height="180" aria-label="Tetris-Spielbildschirm"></canvas></div>
+  <div class="screenhint"><span>DMG-01 / POCKET MODE</span><span id="screenMode">MONO</span></div>
+ </div>
+ <div class="controls">
+  <div class="dpad" aria-label="Steuerkreuz">
+   <button class="up" data-action="rotate" aria-label="Drehen">▲</button><button class="left" data-action="left" aria-label="Links">◀</button><button class="right" data-action="right" aria-label="Rechts">▶</button><button class="down" data-action="down" aria-label="Runter">▼</button><span class="center"></span>
+  </div>
+  <div><div class="actionpad"><button class="actionbtn" data-action="rotate" aria-label="Drehen A">A</button><button class="actionbtn" data-action="harddrop" aria-label="Schnell fallen B">B</button></div><div class="action-labels"><span>A</span><span>B</span></div></div>
+ </div>
+ <div class="utilitykeys"><button data-action="select" aria-label="Select"></button><button data-action="start" aria-label="Start"></button></div>
+ <div class="utilitylabels"><span>SELECT</span><span>START</span></div>
+ <div class="speaker" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+</section>
+
+<section class="panel">
+ <header class="panel-head"><div class="eyebrow">Retro arcade · Lightweight edition</div><h1>POCKET BLOCKS</h1><p class="subtitle">Ein eigenständiger Falling-Blocks-Klassiker im Handheld-Look. Offline spielbar, ohne Bibliotheken, für ältere PCs gebaut.</p></header>
+ <section class="card"><div class="stats"><div class="stat"><span>Punkte</span><strong id="score">000000</strong></div><div class="stat"><span>Linien</span><strong id="lines">0</strong></div><div class="stat"><span>Level</span><strong id="level">1</strong></div></div>
+  <div class="nextrow" style="margin-top:10px"><div class="mini"><div><div class="eyebrow">Nächster</div><strong id="nextName">T-Block</strong></div><canvas id="next" width="80" height="80"></canvas></div><div class="mini"><div><div class="eyebrow">Halten</div><strong id="holdName">Leer</strong><div class="help">Taste C / Shift</div></div><canvas id="hold" width="80" height="80"></canvas></div></div>
+  <div class="btnrow" style="margin-top:12px"><button class="btn primary" id="playBtn">▶ Neues Spiel</button><button class="btn" id="pauseBtn">Ⅱ Pause</button><button class="btn" id="restartBtn">↻ Neustart</button></div><div class="status" id="status" role="status">Bereit. Drücke „Neues Spiel“ oder START.</div>
+ </section>
+ <section class="card"><h2>Display-Labor</h2><div class="grid2">
+  <div class="field"><label for="palette">Farbmodus</label><select id="palette"><option value="dmg">Original DMG · Grün</option><option value="mono">Schwarz-Weiß</option><option value="color">Farbe · Arcade</option><option value="amber">Amber CRT</option><option value="ice">Ice Blue</option><option value="oled">OLED · Tiefschwarz</option><option value="quantum">Quantum Color</option></select></div>
+  <div class="field"><label for="filter">Display-Filter</label><select id="filter"><option value="none">Clean LCD</option><option value="uled">ULED · HDR-Kontrast</option><option value="uled-vivid">ULED Vivid · Leuchtfarben</option><option value="uled-local">ULED Local Dimming</option><option value="dotmatrix">Dot-Matrix-Pixel</option><option value="scanlines">Scanlines</option><option value="crt">CRT / RGB + Vignette</option><option value="dmg">LCD-Glanz & Geisterbild</option><option value="vhs">Retro-Streifen</option></select></div>
+  <div class="field"><label for="ghost">Schattenstein</label><select id="ghost"><option value="on">An</option><option value="off">Aus</option></select></div>
+  <div class="field"><label for="speed">Spieltempo</label><select id="speed"><option value="classic">Klassisch</option><option value="chill">Entspannt</option><option value="turbo">Turbo</option></select></div>
+ </div><label class="checkline"><input type="checkbox" id="screenGlow" checked> Dezentes Display-Leuchten</label><label class="checkline"><input type="checkbox" id="soundToggle"> 8-Bit-Sounds (Web Audio)</label><label class="checkline"><input type="checkbox" id="reduceFx"> Effekte reduzieren (maximale Leistung)</label></section>
+ <section class="card"><h2>Spielstände & Sicherung</h2><div class="slots" id="slots"></div>
+  <div class="slot-actions"><button class="btn primary" id="saveBtn">Speichern in Slot</button><button class="btn" id="loadBtn">Laden</button><button class="btn danger" id="deleteBtn">Slot löschen</button></div>
+  <div class="slot-actions"><button class="btn" id="exportBtn">⇩ Spielstand exportieren</button><button class="btn" id="importBtn">⇧ Importieren</button><input class="hidden" type="file" id="importFile" accept=".json,application/json"></div>
+  <div class="help" style="margin-top:8px">Spielstände werden lokal in diesem Browser gespeichert. Export erstellt eine JSON-Datei als Backup. Importiert werden nur Pocket-Blocks-Sicherungen.</div><div class="status" id="saveStatus" role="status"></div>
+ </section>
+ <section class="card"><h2>Tastatur & Controller</h2><div class="help"><b>Tastatur:</b> <kbd>←</kbd> <kbd>→</kbd> bewegen · <kbd>↑</kbd> oder <kbd>X</kbd> drehen · <kbd>Z</kbd> zurückdrehen · <kbd>↓</kbd> soft drop · <kbd>Leertaste</kbd> hard drop · <kbd>C</kbd>/<kbd>Shift</kbd> halten · <kbd>P</kbd>/<kbd>Esc</kbd> Pause · <kbd>Enter</kbd> Start.</div>
+  <div class="help" style="margin-top:8px"><b>Gamepad:</b> D-Pad / linker Stick bewegen · A/✕ drehen · B/○ hard drop · X/□ halten · Start pausieren. Gamepads werden über die Browser-Gamepad-API erkannt; bei manchen Browsern erst nach Tastendruck oder Controller-Eingabe.</div>
+  <div class="btnrow" style="margin-top:10px"><button class="btn" id="detectPad">Controller prüfen</button><button class="btn" id="resetSettings">Einstellungen zurücksetzen</button></div><div class="status" id="padStatus" role="status">Noch kein Controller erkannt.</div>
+ </section>
+ <div class="footer">POCKET BLOCKS · Eigenständige Fan-Hommage an klassische Handheld-Puzzles · Eine HTML-Datei · Keine externen Ressourcen</div>
+</section>
+</main>
+<script src="app.js" defer></script>
+</body>
+</html>
