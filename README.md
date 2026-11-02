@@ -5,6 +5,9 @@
 ![Platform: Browser / Handheld](https://img.shields.io/badge/Platform-Web%20%7C%20Handheld-blue)
 ![ZeroTraceDevs Approved](https://img.shields.io/badge/Dev-ZeroTraceDevs-purple)
 
+<img width="1920" height="923" alt="Unbenannt" src="https://github.com/user-attachments/assets/c87f00b7-dd8b-46ae-8a3f-8ec0e7f0735e" />
+<img width="1919" height="922" alt="Unben1annt" src="https://github.com/user-attachments/assets/57ed52a2-fbfb-4fb7-a6c2-8a2db7765df7" />
+
 > **A retro-inspired falling-block puzzle game with a classic handheld look, modern display effects, gamepad support, and local save slots.**
 
 ---
